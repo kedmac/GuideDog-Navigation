@@ -32,11 +32,6 @@ ACTION_COLORS = {
     "unknown":           (120, 120, 120),
 }
 
-# [Keep DepthEstimator, Navigator, zone_stats, depth_interpretation classes/funcs as they were]
-# ... (Assuming they remain unchanged from your original snippet) ...
-
-# (Note: I am including the specific visualization functions because they define the display dimensions)
-
 class DepthEstimator:
     def __init__(self):
         print("Loading MiDaS depth model …")
@@ -44,7 +39,7 @@ class DepthEstimator:
         self.model = torch.hub.load("intel-isl/MiDaS", "MiDaS_small", trust_repo=True)
         self.model.to(self.device).eval()
         self.transform = torch.hub.load("intel-isl/MiDaS", "transforms", trust_repo=True).small_transform
-        print("✅ MiDaS ready")
+        print("MiDaS ready")
 
     def predict(self, frame_bgr: np.ndarray) -> np.ndarray:
         rgb = cv2.cvtColor(frame_bgr, cv2.COLOR_BGR2RGB)
@@ -67,7 +62,7 @@ class Navigator:
         self.model = NavigationModel(num_classes=NUM_CLASSES, pretrained=False)
         self.model.load_state_dict(torch.load(BEST_MODEL_PATH, map_location="cpu"))
         self.model.eval()
-        print(f"✅ Navigation model loaded")
+        print(f"Navigation model loaded")
 
     def predict(self, frame_bgr: np.ndarray):
         rgb = cv2.cvtColor(frame_bgr, cv2.COLOR_BGR2RGB)
@@ -189,7 +184,7 @@ class SessionRecorder:
         path = os.path.join(self.dir, "processed_video.avi")
         fourcc = cv2.VideoWriter_fourcc(*'XVID')
         self.video_writer = cv2.VideoWriter(path, fourcc, 20.0, frame_size)
-        print(f"🎬 Video recording to: {path}")
+        print(f"Video recording to: {path}")
 
     def record(self, frame_id, display_frame, stats, action, conf):
         if self.video_writer is not None:
@@ -215,11 +210,11 @@ def main():
     if choice == "1":
         cap = cv2.VideoCapture(VIDEO_INPUT_PATH)
     else:
-        ip = input("Enter phone IP (e.g. 192.168.1.5): ").strip()
-        cap = cv2.VideoCapture(f"http://{ip}:8080/video")
+        ip = input("Enter phone IP (e.g. http://192.168.1.5:8080): ").strip()
+        cap = cv2.VideoCapture(f"{ip}/video")
 
     if not cap.isOpened():
-        print("❌ Error: Could not open source.")
+        print("Error: Could not open source.")
         return
 
     depth_model = DepthEstimator()
