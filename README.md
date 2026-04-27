@@ -11,3 +11,6 @@ Choose 1 or 2 (description will be given in the terminal, what 1 does and what 2
 
 You can change the file name of the video you want to run the code on. 
 Since I was running the code in Ubuntu wsl2, i couldn't access the laptop's camera. So instead I downloaded an app IPWebcam, that will take input from my mobile phone. You just need to type in the IP Address mentioned in the app after you click on start server button in the app. 
+
+Due to file size limits, the initial road model output video is hosted externally:
+https://drive.google.com/file/d/1XPANDxh6mvcevBYPPjB8qex8wZFtgpMY/view?usp=drive_link
