@@ -1,0 +1,11 @@
+# Ignore datasets
+Dataset/
+archive/
+CamVid/
+# Ignore Python system files
+__pycache__/
+.ipynb_checkpoints/
+# Ignore local test videos if they are too big
+*.mp4
+../../datasets/
+__pycache__/
