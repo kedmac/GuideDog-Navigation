@@ -1,12 +1,3 @@
-#!/usr/bin/env python3
-"""
-Terrain-Aware Navigation with Direction Suggestions
-- Outputs: "Move left", "Move right", "Go straight", "Stop"
-- Uses road mask to restrict analysis
-- Stair detection with temporal smoothing
-- Video saving + phone IP input
-"""
-
 import cv2
 import torch
 import numpy as np
@@ -17,7 +8,6 @@ from scipy.signal import find_peaks
 from model import LightweightUNet
 from config import IMAGE_SIZE, MODEL_SAVE_PATH
 
-# ---------- Tracking (same as before) ----------
 class TrackedObject:
     def __init__(self, box, class_id, frame_id):
         self.box = box
